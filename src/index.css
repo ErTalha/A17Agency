@@ -1,0 +1,251 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 45% 8%;
+    --foreground: 0 0% 100%;
+    --card: 225 40% 12%;
+    --card-foreground: 0 0% 100%;
+    --popover: 225 40% 12%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 225 45% 8%;
+    --secondary: 225 30% 18%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 225 20% 25%;
+    --muted-foreground: 225 15% 65%;
+    --accent: 225 30% 18%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 225 20% 20%;
+    --input: 225 20% 20%;
+    --ring: 0 0% 100%;
+    --radius: 1rem;
+    
+    /* Custom A17 variables */
+    --pad: clamp(18px, 4vw, 60px);
+    --max: 1200px;
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --stroke: rgba(255,255,255,.10);
+    --stroke-2: rgba(255,255,255,.14);
+    --glass: rgba(255,255,255,.05);
+    --glass-2: rgba(255,255,255,.03);
+    --muted-text: rgba(255,255,255,.72);
+    --muted-text-2: rgba(255,255,255,.60);
+    --shadow: 0 20px 60px rgba(0,0,0,.55);
+    --shadow-soft: 0 12px 30px rgba(0,0,0,.35);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1829 100%);
+    color: #fff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-scroll-left {
+  animation: scrollLeft 40s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scrollRight 40s linear infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Hover pause for carousels */
+.hover-pause:hover {
+  animation-play-state: paused;
+}
+
+/* Glass effect */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--stroke);
+}
+
+.glass-2 {
+  background: var(--glass-2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Card styles */
+.card-luxury {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  background: var(--glass);
+  border: 1px solid var(--stroke);
+  transition: all 0.3s ease;
+}
+
+.card-luxury:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: var(--shadow);
+}
+
+/* Button styles */
+.btn-primary {
+  display: inline-block;
+  padding: 18px 45px;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+  width: fit-content;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #8F8888;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Section header */
+.section-header h3 {
+  color: #7a7f9a;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.section-header h2 {
+  font-size: clamp(2.2rem, 4.6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section-header p {
+  margin-top: 14px;
+  color: var(--muted-text);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 65ch;
+}
+
+/* Pricing card */
+.pricing-card {
+  background: rgb(17, 20, 46);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.06), transparent 60%);
+  pointer-events: none;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.pricing-card.recommended {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+}
+
+/* Focus ring */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(255,255,255,.55);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .animate-scroll-left,
+  .animate-scroll-right {
+    animation-duration: 26s;
+  }
+}
